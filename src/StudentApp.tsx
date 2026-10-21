@@ -6,12 +6,14 @@ import {fetchStudents, persistStudents} from "./api/studentapi.ts";
 
 const StudentApp = () => {
     const [students, setStudents] = useState<Student[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(()=>{
         //1. That is something we want component to do on first rendering
         fetchStudents().then(students => {
             console.log(students)
             setStudents(students)
+            setLoading(false)
         })
         //2. Cleanup or unmounting
            return () => {
@@ -30,7 +32,8 @@ const StudentApp = () => {
     return (
         <div>
             <StudentsForm registerStudent={ newStudentRegistration } />
-            <StudentsList students={students}></StudentsList>
+            {loading? <p>Loading...</p>:
+            <StudentsList students={students}></StudentsList>}
         </div>
     );
 }
