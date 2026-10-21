@@ -1,0 +1,7 @@
+{
+  "students": [
+    {"admissionNumber": 1, "name": "Student1", "email": "student1@demo.com"},
+    {"admissionNumber": 2, "name": "Student2", "email": "student2@demo.com"},
+    {"admissionNumber": 3, "name": "Student4", "email": "student3@demo.com"}
+  ]
+}
