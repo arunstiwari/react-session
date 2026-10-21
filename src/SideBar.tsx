@@ -1,8 +1,6 @@
-// import {useState} from "react";
 
-const sidebarItems = ["Projects", "Dashboard"]
+const sidebarItems = ["Projects", "Dashboard" , "Todo", "Students"]
 const SideBar = ({active, setActive}) => {
-    // const [active, setActive] = useState("Dashboard")
 
     return ( <aside className="sidebar">
        <ul className="sidebar-items">
