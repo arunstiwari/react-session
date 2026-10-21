@@ -2,25 +2,7 @@ import {useEffect, useState} from "react";
 import StudentsForm from "./students/StudentForm.tsx";
 import {type Student } from './students/Student.ts'
 import StudentsList from "./students/StudentList.tsx";
-
-// const studentsList: Student[] = [
-//     {admissionNumber: 1, name: "Student1", email: "student1@demo.com"},
-//     {admissionNumber: 2, name: "Student2", email: "student2@demo.com"},
-//     {admissionNumber: 3, name: "Student3", email: "student3@demo.com"},
-// ]
-
-const fetchStudents = async () => {
-    // 1. API Call
-    const students = await fetch("http://localhost:3002/students",  {
-        method: "GET",
-        headers: {"Content-Type": "application/json"}
-    })
-    if(students.ok){
-        return students.json()
-    }else {
-        console.error("Error fetching students...");
-    }
-}
+import {fetchStudents, persistStudents} from "./api/studentapi.ts";
 
 const StudentApp = () => {
     const [students, setStudents] = useState<Student[]>([])
@@ -31,7 +13,7 @@ const StudentApp = () => {
             console.log(students)
             setStudents(students)
         })
-        //2. Cleanup or unomunting
+        //2. Cleanup or unmounting
            return () => {
             console.log("cleaning up students component");
         }
@@ -41,6 +23,7 @@ const StudentApp = () => {
 
     const newStudentRegistration = (form: Student) => {
         console.log("StudentApp: ",form)
+        persistStudents(form)
         setStudents([...students , form])
     }
 

@@ -19,9 +19,9 @@ const StudentsForm = ({registerStudent}:{registerStudent: any}) => {
             setErrors({field: "email", message: "Email is required"})
         }
 
-        if(Object.keys(errors).length > 0){
-            return
-        }
+        // if(Object.keys(errors).length > 0){
+        //     return
+        // }
         //validation logic
         registerStudent(form)
         setForm({admissionNumber: 0, name: "", email: "" })
