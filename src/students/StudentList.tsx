@@ -7,7 +7,7 @@ const StudentsList = ({students}: {students: Student[]}) => {
             <h2>List of Students:</h2>
             <ul>
                 {students.map(student => (
-                    <StudentRow  student={student} />
+                    <StudentRow key={student.admissionNumber} student={student} />
 
                 ))}
             </ul>
