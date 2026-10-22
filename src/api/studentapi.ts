@@ -29,3 +29,15 @@ export const persistStudents = async (student: Student) => {
         console.error("Error persisting students...");
     }
 }
+
+export const fetchStudentDetail = async (id: string) => {
+    const student = await fetch(`http://localhost:3002/students/${id}`, {
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+    })
+    if(student.ok){
+        return student.json()
+    }
+    console.error("Error fetching students...");
+
+}
