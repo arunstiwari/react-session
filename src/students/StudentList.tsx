@@ -5,12 +5,22 @@ const StudentsList = ({students}: {students: Student[]}) => {
     return (
         <div>
             <h2>List of Students:</h2>
-            <ul>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Admission Number</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
                 {students.map(student => (
                     <StudentRow key={student.admissionNumber} student={student} />
 
                 ))}
-            </ul>
+                </tbody>
+            </table>
         </div>
     )
 }
