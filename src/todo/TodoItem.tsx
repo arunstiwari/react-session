@@ -12,7 +12,7 @@ const  TodoItem= ({todo, onToggle}:TodoItemProps) => {
                 <input type="checkbox"
                        checked={todo.completed}
                        onChange={()=> onToggle(todo.id)}
-                       />
+                />
                 <span>{todo.text}</span>
             </label>
         </li>

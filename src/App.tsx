@@ -1,7 +1,7 @@
 import NavBar from './NavBar'
 import  './App.css'
 import SideBar from "./SideBar.tsx";
-import {lazy, Suspense, useState} from "react";
+import {lazy, Suspense} from "react";
 import Dashboard from "./Dashboard.tsx";
 import Projects from "./Projects.tsx";
 import {Routes, Route} from "react-router";
@@ -17,12 +17,11 @@ const  StudentApp  = lazy(()=> import("./StudentApp.tsx") ) ;
 
 //Suspense
 const  App = () => {
-    const [active, onSelect] = useState("Dashboard");
     return (
         <div className="layout">
             <NavBar/>
             <div className="layout-body">
-                <SideBar active={active} setActive={onSelect}/>
+                <SideBar />
                 <main className="content">
                     {/*{*/}
                     {/*    active === "Dashboard" ? (<Dashboard />) :*/}

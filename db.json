@@ -47,5 +47,9 @@
       "id": "5ByJf_jXta0"
     }
   ],
+  "todos": [
+    {"id": 1, "text": "Task1", "completed": false},
+    {"id": 2, "text": "Task2", "completed": true}
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

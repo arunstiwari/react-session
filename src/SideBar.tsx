@@ -6,7 +6,7 @@ const sidebarItems = [
     {path: "/todos", name: "Todo"},
     {path: "/students", name: "Students"}
 ]
-const SideBar = ({active, setActive}) => {
+const SideBar = () => {
 
     return ( <aside className="sidebar">
        <ul className="sidebar-items">

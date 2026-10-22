@@ -26,32 +26,32 @@ const Todo = () =>{
     const completedCount = todos.filter((todo) => todo.completed).length
 
     return(
-            <section className="todo">
-                <form className="todo-form" onSubmit={addTodo}>
-                    <input
-                        type="text"
-                        placeholder="What needs to be done?"
-                        value={text}
-                        onChange={(event) => setText(event.target.value)}
-                    />
-                    <button type="submit">Add</button>
-                </form>
+        <section className="todo">
+            <form className="todo-form" onSubmit={addTodo}>
+                <input
+                    type="text"
+                    placeholder="What needs to be done?"
+                    value={text}
+                    onChange={(event) => setText(event.target.value)}
+                />
+                <button type="submit">Add</button>
+            </form>
 
-                {todos.length === 0 ? (
-                    <p className="todo-empty">No todos yet. Add one above.</p>
-                ) : (
-                    <>
-                        <ul className="todo-list">
-                            {todos.map((todo) => (
-                                <TodoItem key={todo.id} todo={todo} onToggle={toggleTodo} />
-                            ))}
-                        </ul>
-                        <p className="todo-summary">
-                            {completedCount} of {todos.length} completed
-                        </p>
-                    </>
-                )}
-            </section>
+            {todos.length === 0 ? (
+                <p className="todo-empty">No todos yet. Add one above.</p>
+            ) : (
+                <>
+                    <ul className="todo-list">
+                        {todos.map((todo) => (
+                            <TodoItem key={todo.id} todo={todo} onToggle={toggleTodo} />
+                        ))}
+                    </ul>
+                    <p className="todo-summary">
+                        {completedCount} of {todos.length} completed
+                    </p>
+                </>
+            )}
+        </section>
     )
 }
 
