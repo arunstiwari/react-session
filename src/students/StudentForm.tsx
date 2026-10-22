@@ -8,7 +8,7 @@ const StudentsForm = ({registerStudent}:{registerStudent: any}) => {
     const [form, setForm] = useState({admissionNumber: 0, name: "", email: "" })
     const [errors, setErrors] = useState<StudentError>({field: "", message: ""})
 
-    const handleNewRegistration = (event) => {
+    const handleNewRegistration = (event: any) => {
         event.preventDefault()
         console.log("Registration New Student")
         if (form.name === "") {
@@ -18,16 +18,11 @@ const StudentsForm = ({registerStudent}:{registerStudent: any}) => {
         if (form.email === "") {
             setErrors({field: "email", message: "Email is required"})
         }
-
-        // if(Object.keys(errors).length > 0){
-        //     return
-        // }
-        //validation logic
         registerStudent(form)
         setForm({admissionNumber: 0, name: "", email: "" })
     }
 
-    const handleFormChange = (event) => {
+    const handleFormChange = (event: any) => {
         const {name, value} = event.target
         // console.log("form change : ", name, value)
         setForm({...form, [name]: value})
