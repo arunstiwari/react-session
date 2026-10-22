@@ -12,7 +12,7 @@ import StudentDetail from "./students/StudentDetail.tsx";
 
 // Change to lazy loading
 // import Todo from "./Todo.tsx";
-const Todo = lazy(() => import("./Todo.tsx"));
+const Todo = lazy(() => import("./todo/Todo.tsx"));
 const  StudentApp  = lazy(()=> import("./StudentApp.tsx") ) ;
 
 //Suspense
