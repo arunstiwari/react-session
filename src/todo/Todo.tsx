@@ -1,26 +1,49 @@
-import { useState} from "react";
+import {useEffect, useReducer, useState} from "react";
 import type {TodoType} from "./TodoType.ts";
 import TodoItem from "./TodoItem.tsx";
+import {createTodo, fetchTodos} from "../api/todoapi.ts";
+import {todoInitialState, todoReducer} from "./todoReducer.ts";
 
 
 
 const Todo = () =>{
-    const [todos, setTodos] = useState<TodoType[]>([]);
+    const [state, dispatch] = useReducer(todoReducer,todoInitialState)
+    const {todos, error, loading } = state
+    // const [todos, setTodos] = useState<TodoType[]>([]);
+    // const [error, setError] = useState("");
     const [text, setText] = useState("");
 
-    const addTodo = (event: any) => {
+    useEffect(() => {
+        try{
+            fetchTodos()
+                .then(data => {
+                    dispatch({type: "FETCH_TODOS", payload: data})
+                })
+        }catch {
+            dispatch({type: "FAILED", payload: "Error Fetching Todos list"})
+        }
+
+    })
+
+    const addTodo = async (event: any) => {
         event.preventDefault()
         const trimmed = text.trim()
         if (!trimmed) return
-
-        setTodos([...todos, { id: Date.now(), text: trimmed, completed: false }])
-        setText("")
+        const newTodo = {id: Date.now(), text: trimmed, completed: false }
+        try {
+            const saved = await createTodo(newTodo)
+            dispatch({type: "ADD_TODO", payload: saved})
+            // setTodos([...todos, { id: Date.now(), text: trimmed, completed: false }])
+            setText("")
+        }catch {
+            dispatch({type: "FAILED", payload: "Error Adding Todos"})
+        }
     }
 
     const toggleTodo = (id: number) => {
-        setTodos(todos.map((todo) =>
-            todo.id === id ? { ...todo, completed: !todo.completed } : todo
-        ))
+        // setTodos(todos.map((todo) =>
+        //     todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        // ))
     }
 
     const completedCount = todos.filter((todo) => todo.completed).length
